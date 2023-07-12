@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,400italic,700,700italic" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic,700italic" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/2.1.3/normalize.min.css"
+        media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/thymeleaf.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/thymeleaf-main.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/thymeleaf-screen.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/thymeleaf-print.css') }}" media="print">
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="title-container">
+            <header class="hero-header fluid-block">
+                <div class="hero-header-text">
+                    <h1 class="hero-header-title">Thymeleaf</h1>
+                </div>
+                <div class="hero-header-image">
+                    <img src="{{ url_for('static', filename='thymeleaf.png') }}" alt="Thymeleaf logo" class="hero-header-logo">
+                </div>
+            </header>
+
+            <div class="tutorial-info fluid-block">
+                <h1 id="tutorial-title" class="tutorial-title">高考志愿填报</h1>
+                <div class="tutorial-metadata">
+                    <div id="tutorial-version">
+                        <span class="tutorial-metadata-label">Document version:</span> 20221206 - 06 December 2022
+                    </div>
+                    <div id="project-version">
+                        <span class="tutorial-metadata-label">Project version:</span> 3.1.1.RELEASE
+                    </div>
+                    <div id="project-website">
+                        <span class="tutorial-metadata-label">Project web site:</span>
+                        <a href="https://www.thymeleaf.org">https://www.thymeleaf.org</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fluid-block">
+            <section class="leave1">
+                <h1>1.总体情况</h1>
+                <center>
+                <table border="3">
+                    <thead>学生信息</thead>
+                    <tbody>
+                    <tr>
+                        <td>高考成绩</td>
+                        <td>{{ student.score }}</td>
+                        <td>全省排名</td>
+                        <td>{{ student.rankings}}</td>
+                    </tr>
+                    <tr>
+                        <td>选科</td>
+                        <td>{{ student.subjects[0] }}</td>
+                        <td>{{ student.subjects[1] }}</td>
+                        <td>{{ student.subjects[2] }}</td>
+                    </tr>
+                    </tbody>
+
+                </table>
+                </center>
+                <img src="{{ url_for('static', filename='img.png') }}">
+            </section>
+            <section class="leave1">
+                <h1>2.志愿</h1>
+                {% for items in data %}
+                <section class="leave2">
+                    <h2>{{ '2.' + items[0] + '' + items[1] + '-' + items[2]}}</h2>
+                    <section class="leave3">
+                        <h3>录取概率分析</h3>
+                    </section>
+                    <section class="leave3">
+                        <h3>院校介绍</h3>
+                        <p>
+                            {{ items[4] }}
+                        </p>
+                    </section>
+                    <section class="leave3">
+                        <h3>专业介绍</h3>
+                        <p>
+                            {{ items[5] }}
+                        </p>
+                    </section>
+                </section>
+                {% endfor %}
+            </section>
+
+        </div>
+    </div>
+</body>
+</html>
